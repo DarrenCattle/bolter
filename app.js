@@ -18,10 +18,10 @@ app.message('bing', async ({ message, say }) => {
   await say('BONG');
 });
 
-app.message(/math (\S*) (\S*)/i, ({ say, context }) => {
+app.message(/math (\S*) (\S*)/i, async ({ message, say, context }) => {
   const a = context.matches[1];
   const b = context.matches[2];
-  await say(a+b);
+  await say(a);
 });
 
 app.message(/echo (.*)/i, ({ say, context }) => {
