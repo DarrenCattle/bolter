@@ -1,0 +1,21 @@
+{
+  "name": "bolter",
+  "version": "1.0.0",
+  "description": "BIG",
+  "main": "index.js",
+  "scripts": {
+    "test": "BONG"
+  },
+  "keywords": [
+    "REAL",
+    "BIG",
+    "ORIGINAL",
+    "DATE",
+    "420"
+  ],
+  "author": "ooboo",
+  "license": "MIT",
+  "dependencies": {
+    "@slack/bolt": "^2.0.1"
+  }
+}
