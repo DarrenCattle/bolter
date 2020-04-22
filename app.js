@@ -6,7 +6,7 @@ const app = new App({
 });
 
 // 1 STRING, 1 OUTPUT
-app.message('pay me', async ({ message, say }) => {
+app.message('get a kkred', async ({ message, say }) => {
   await say('pay me');
 });
 
@@ -16,6 +16,12 @@ app.message('ping', async ({ message, say }) => {
 
 app.message('bing', async ({ message, say }) => {
   await say('BONG');
+});
+
+app.message(/math (\S*) (\S*)/i, ({ say, context }) => {
+  const a = context.matches[1];
+  const b = context.matches[2];
+  await say(a+b);
 });
 
 app.message(/echo (.*)/i, ({ say, context }) => {
