@@ -1,4 +1,4 @@
-const { App } = require('@slack/bolt');
+const { App, directMention } = require('@slack/bolt');
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -18,12 +18,15 @@ app.message('bing', async ({ message, say }) => {
   await say('BONG');
 });
 
-app.message('oo', async ({ message, say }) => {
-  await say('OOBOO');
+app.message('chess', async ({ message, say, context }) => {
+  await say('chezz');
 });
 
-app.message('chess', async ({ message, say }) => {
-  await say('chezz');
+app.message('oo', async ({ message, say }) => {
+  var roll = Math.random();
+  if(roll < 0.25) {
+    say('OOBOO' + ' roll: ' + roll);
+  }
 });
 
 // MENTIONS
@@ -33,21 +36,30 @@ app.event('app_mention', async ({ event, say , context }) => {
 
 app.message(/echo (.*)/i, async ({ message, say, context }) => {
   var user = message.user;
-  console.log(message.user);
   //d = U0316HMAS
   if(user == "U0316HMAS") {
     await say(context.matches[1]);
   }
 });
 
-/* FUNCTIONS
-app.message(/math (\S*) (\S*)/i, async ({ message, say, context }) => {
-  const a = context.matches[1];
-  const b = context.matches[2];
-  var c = (+a) + (+b);
-  await say(c.toString());
-});*/
+//COMMANDS
+app.command('/roll', async ({ command, ack, say }) => {
+  await ack();
+  var die = 6;
+  if(command.text!=='' && !isNaN(command.text)) {
+    die = parseInt(command.text);
+  }
+  else { die = 6; }
+  die = die < 1 ? 1 : die;
+  die = die > 1001 ? 1000 : die;
+  var roll = Math.ceil(Math.random()*die);
+  await say(command.user_name + ' rolls: ' + roll);
+});
 
+app.command('/ooboo', async ({ command, ack, say }) => {
+  await ack();
+  await say('OOBOO!!! brought to you by ' + command.user_name);
+});
 
 
 (async () => {
