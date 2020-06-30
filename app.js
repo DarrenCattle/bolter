@@ -10,23 +10,12 @@ app.message('get a kkred', async ({ message, say }) => {
   await say('pay me');
 });
 
-app.message('ping', async ({ message, say }) => {
-  await say('PONG');
-});
-
 app.message('bing', async ({ message, say }) => {
   await say('BONG');
 });
 
 app.message('chess', async ({ message, say, context }) => {
   await say('chezz');
-});
-
-app.message('oo', async ({ message, say }) => {
-  var roll = Math.random();
-  if(roll < 0.25) {
-    say('OOBOO' + ' roll: ' + roll);
-  }
 });
 
 // MENTIONS
